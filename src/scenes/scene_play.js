@@ -24,9 +24,41 @@ class Scene_play extends Phaser.Scene {
         this.physics.add.collider(this.ball,this.izquierda, this.chocaPala, null, this);
         this.physics.add.collider(this.ball,this.derecha, this.chocaPala, null, this);
         
+        //**Controles**
+        //Pala derecha
+        this.cursor = this.input.keyboard.createCursorKeys();
+        //Pala izquierda
+        this.cursor_W= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.cursor_S= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        
+    }
+    update(){
+        if(this.ball.x < 0 || this.ball.x > this.sys.game.config.width){
+            this.ball.setPosition(this.sys.game.config.width/2, this.sys.game.config.height/2 );
+        }
+
+        //**Control de las Palas**
+        //Pala Derecha
+        if(this.cursor.down.isDown) {
+            this.derecha.body.setVelocityY(300);
+        }else if(this.cursor.up.isDown) {
+            this.derecha.body.setVelocityY(-300);
+        }else {
+            this.derecha.body.setVelocity(0);
+        }
+        //Pala Izquierda
+        if(this.cursor_S.isDown) {
+            this.izquierda.body.setVelocityY(300);
+        } else if (this.cursor_W.isDown){
+            this.izquierda.body.setVelocityY(-300);
+        } else{
+            this.izquierda.body.setVelocityY(0);
+        }
+        
     }
 
-    chocaPala(){
+chocaPala(){
+        this.ball.setVelocityY(Phaser.Math.Between(-120, 120));
 
     }
 
