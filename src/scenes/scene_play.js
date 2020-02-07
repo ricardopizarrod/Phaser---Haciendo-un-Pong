@@ -12,7 +12,7 @@ class Scene_play extends Phaser.Scene {
         //Palas
         this.izquierda = new Palas(this, 30, center_height, "izquierda");
         //this.right = this.add.image(this.sys.game.config.width-30, center_height, "derecha");
-        this.right = new Palas(this, this.sys.game.config.width-30, center_height, "derecha");
+        this.derecha = new Palas(this, this.sys.game.config.width-30, center_height, "derecha");
         //Bola
         this.physics.world.setBoundsCollision(false, false, true, true);
         this.ball = this.physics.add.image(center_width, center_height, "ball");
